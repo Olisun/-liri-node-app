@@ -3,8 +3,6 @@ require('dotenv').config();
 
 // This imports the keys.js file with has my spotify id and secret id mapped from my .env file with actually has the ids stored (.env is part of .gitignore). 
 var keys = require('./keys.js');
-// var spotify = new Spotify(keys.spotify)
-// **************************************************
 
 // Setting variables to the node packages needed. 
 var axios = require('axios');
@@ -37,7 +35,7 @@ function getMovieInfo() {
   for (var i = 3; i < nodeArguments.length; i++) {
     // In English, this says if i, is greater than indice 2 (first two are file paths and third indice is the command movie-this) and less than whatever the length of the movie the user typed for movie-this, then that's the movie. 
     if (i > 3 && i < nodeArguments.length) {
-      movieName = `${movieName} ${nodeArguments[i]}` // <-- using back-ticks with $ and {} instead of '' and concatonation. (source CodeAcadamy).
+      movieName = `${movieName} ${nodeArguments[i]}` // <-- using back-ticks with $ and {} instead of '' and concatonation.
         //Otherwise, if i is just one word, that's also the movie.
     } else {
       movieName += nodeArguments[i];
@@ -87,7 +85,7 @@ function getArtistInfo() {
   for (var i = 3; i < nodeArguments.length; i++) {
     // This says if i, is greater than indice 2 (first two are file paths and third indice is the command concert-this) and less than whatever the length of the artist the user typed for concert-this, then that's the movie. 
     if (i > 3 && i < nodeArguments.length) {
-      artistName = `${artistName} ${nodeArguments[i]}` // <-- using back-ticks with $ and {} instead of '' and concatonation. (source CodeAcadamy).
+      artistName = `${artistName} ${nodeArguments[i]}` // <-- using back-ticks with $ and {} instead of '' and concatonation.
         //Otherwise, if i is just one word, that's also the artist. 
     } else {
       artistName += nodeArguments[i];
@@ -127,48 +125,45 @@ function getArtistInfo() {
 
 // Function for getting the artist/band data from bands in town using axios.
 function getSpotifyInfo() {
-  // Creating an empty string to store whatever the user types for concert-this. 
+  // Establishing the id and secret id stored in the keys.js file. 
+  var spotify = new Spotify(keys.spotify)
+    // Creating an empty string to store whatever the user types for concert-this. 
   var songName = '';
   // Creating a for-loop to to solve the problem if the name of the artist is more than one word. 
   for (var i = 3; i < nodeArguments.length; i++) {
     // This says if i, is greater than indice 2 (first two are file paths and third indice is the command concert-this) and less than whatever the length of the artist the user typed for concert-this, then that's the movie. 
     if (i > 3 && i < nodeArguments.length) {
-      songName = `${songName} ${nodeArguments[i]}` // <-- using back-ticks with $ and {} instead of '' and concatonation. (source CodeAcadamy).
+      songName = `${songName} ${nodeArguments[i]}` // <-- using back-ticks with $ and {} instead of '' and concatonation. 
         //Otherwise, if i is just one word, that's also the artist. 
     } else {
       songName += nodeArguments[i];
     };
   };
-  // Setting the queryURL equal to a variable. 
-  var queryURL = "https://api.spotify.com/v1/search?q=track:" + songName + "&type=track&limit=10";
-
-  // Now time to use axios through a promise function. 
-  axios.get(queryURL).then(
-      function(songResponse) {
-        console.log('Song: ' + songResponse.tracks.items[0].name);
-        console.log('Artist: ' + songResponse.tracks.items[0].artists[0].name);
-        console.log('Spotify Link: ' + songResponse.tracks.items[0].preview_url);
-        console.log('Album: ' + songResponse.tracks.items[0].album.name);
-      })
+  // Using Spotiy's node API package to retreive song data.
+  spotify.request("https://api.spotify.com/v1/search?q=track:" + songName + "&type=track&limit=10").then(function(songResponse) {
+    console.log('Song: ' + songResponse.tracks.items[0].name);
+    console.log('Artist: ' + songResponse.tracks.items[0].artists[0].name);
+    console.log('Spotify Link: ' + songResponse.tracks.items[0].preview_url);
+    console.log('Album: ' + songResponse.tracks.items[0].album.name);
     // These tell you what the errors messages are if any. 
-    .catch(function(error) {
-      if (error.songResponse) {
-        // Successful request but the server came back with a status code outside of the range of 2xx. 
-        console.log("---------------Data---------------");
-        console.log(error.songResponse.data);
-        console.log("---------------Status---------------");
-        console.log(error.songResponse.status);
-        console.log("---------------Status---------------");
-        console.log(error.songResponse.headers);
-      } else if (error.request) {
-        // Successful request but no songResponse came back. You'll get details of the error in error.request in the form of an object.
-        console.log(error.request);
-      } else {
-        // Unsuccessful request.
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
-    });
+  }).catch(function(error) {
+    if (error.songResponse) {
+      // Successful request but the server came back with a status code outside of the range of 2xx. 
+      console.log("---------------Data---------------");
+      console.log(error.songResponse.data);
+      console.log("---------------Status---------------");
+      console.log(error.songResponse.status);
+      console.log("---------------Status---------------");
+      console.log(error.songResponse.headers);
+    } else if (error.request) {
+      // Successful request but no songResponse came back. You'll get details of the error in error.request in the form of an object.
+      console.log(error.request);
+    } else {
+      // Unsuccessful request.
+      console.log("Error", error.message);
+    }
+    console.log(error.config);
+  });
 };
 
 // Function for getting the text from inside random.txt and then use it to call one of liri's commands.
