@@ -1,6 +1,6 @@
 # Liri Node App
 
-## Screen Shot of App (Working) App Cycle:
+## Screen Shot of App Cycle:
 ![](images/screen-shot-main.png)
 
 ## Link to Video on Github Pages:
