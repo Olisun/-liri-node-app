@@ -3,7 +3,7 @@
 ## Screen Shot of App Cycle:
 Main
 ![](images/screen-shot-main.png)
-Default Song & Movie Methods
+Default Song & Movie Methods (Changed default song b/c spotify was sending back a song with a similiar title to "The Sign". More details below.
 ![](images/screen-shot-default.png)
 
 ## Link to Video on Github Pages:
@@ -125,6 +125,12 @@ Function for 'movie-this'.
 function getMovieInfo() {
   // Creating an empty string to store whatever the user types for movie-this. 
   var movieName = '';
+  // Setting a variable for song input after spotify command
+  var movieInput = process.argv[3]
+    // If no movie is inputted after the command, the default movie will be 'Mr. Nobody'.
+  if (!movieInput) {
+    movieName = 'Mr. Nobody'
+  }
   // Creating a for-loop to to solve the problem if the name of the movie is more than one word. 
   for (var i = 3; i < nodeArguments.length; i++) {
     // In English, this says if i, is greater than indice 2 (first two are file paths and third indice is the command movie-this) and less than whatever the length of the movie the user typed for movie-this, then that's the movie. 
@@ -229,6 +235,12 @@ function getSpotifyInfo() {
   var spotify = new Spotify(keys.spotify)
     // Creating an empty string to store whatever the user types for concert-this. 
   var songName = '';
+  // Setting a variable for song input after spotify command
+  var songInput = process.argv[3]
+    // If no song is inputted after the command, the default song will be 'Shoot to Thrill'.
+  if (!songInput) {
+    songName = 'Shoot to Thrill'
+  }
   // Creating a for-loop to to solve the problem if the name of the artist is more than one word. 
   for (var i = 3; i < nodeArguments.length; i++) {
     // This says if i, is greater than indice 2 (first two are file paths and third indice is the command concert-this) and less than whatever the length of the artist the user typed for concert-this, then that's the movie. 

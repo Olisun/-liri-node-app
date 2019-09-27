@@ -33,7 +33,7 @@ function getMovieInfo() {
   var movieName = '';
   // Setting a variable for song input after spotify command
   var movieInput = process.argv[3]
-    // If no song is inputted after the command, the default song will be 'The Sign'.
+    // If no movie is inputted after the command, the default movie will be 'Mr. Nobody'.
   if (!movieInput) {
     movieName = 'Mr. Nobody'
   }
@@ -137,7 +137,7 @@ function getSpotifyInfo() {
   var songName = '';
   // Setting a variable for song input after spotify command
   var songInput = process.argv[3]
-    // If no song is inputted after the command, the default song will be 'The Sign'.
+    // If no song is inputted after the command, the default song will be 'Shoot to Thrill'.
   if (!songInput) {
     songName = 'Shoot to Thrill'
   }
