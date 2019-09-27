@@ -167,7 +167,7 @@ function getSpotifyInfo() {
 };
 
 // Function for getting the text from inside random.txt and then use it to call one of liri's commands.
-function randomTextInstx() {
+function randomTextInstx(data, dataTwo) {
   // This uses fs's node package to read the contents of random.txt and store it in a variable named data. utf8 is included as a parameter to prevent garbage data from being included.
   fs.readFile('random.txt', 'utf8', function(error, data) {
     // This if statement is used for error checking.
@@ -180,9 +180,7 @@ function randomTextInstx() {
     var dataArray = data.split(',');
     // The new array will look like this example --> ['spotify-this-song', '"I want it That Way"']. 
     console.log(dataArray)
-      //
-      // for (var i = 0; 1 < dataArray.length; i++) {
-      //   console.log(dataArray[i]);
-      // };
+      // This is supposed to run the getSpotifyInfo function but it's returning undefined in the terminal. Still working on this!
+    getSpotifyInfo(dataArray[0], dataArray[1]);
   })
 }
