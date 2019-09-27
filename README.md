@@ -1,7 +1,10 @@
 # Liri Node App
 
 ## Screen Shot of App Cycle:
+Main
 ![](images/screen-shot-main.png)
+Default Song & Movie Methods
+![](images/screen-shot-default.png)
 
 ## Link to Video on Github Pages:
 
@@ -74,11 +77,11 @@ I had diffuculty at first getting data from spotify. I overcame this by studying
 
 Trying to figure out a way to add a video of the app work-flow. I decided to create an index.html to hold the video and then display that on github pages. The link to the videop will then be in the readme.
 
+Unable to get the spotify and movie functions to retreive the required song/movie if no input is provided by the user. Overcame by setting a new var = process.argv[3] then writing an if condition stating if no song/movie is inputed, retreive this song/movie. PLEASE NOTE - I changed the song from "The Sign" by Ace of Base to "Shoot to Thrill" by AC DC because spotify was returning a song called "The Sign of the Time from Harry Styles. I just want to show that this part of the function that lists a default song works.
+
 ## Problems Still Facing:
 
 Unable to get Liri to call the spotify function when reading the random.txt file contents. The text being appeneded to the CLI works. Error message shows undefined, cannot read property. Still working on this!
-
-Unable to get the spotify and movie functions to retreive the required song/movie if no input is provided by the user. Error message shows undefined, cannot read property. Still working on this!
 
 ## Code Snippets:
 
