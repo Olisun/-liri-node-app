@@ -3,10 +3,9 @@
 ## Screen Shot of App (Working) App Cycle:
 ![](images/screen-shot-main.png)
 
-## Video:
+## Link to Video on Github Pages:
 
-<video src="![](videos/app.mov)" width="320" height="200" controls preload></video>
-
+https://olisun.github.io/liri-node-app/index.html
 
 ## About the project:
 In this assignment, we had to build an app called LIRI. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
@@ -72,6 +71,8 @@ I created if-else conditions so that Liri knows what to do when the user types a
 ## Problems That I Overcame:
 
 I had diffuculty at first getting data from spotify. I overcame this by studying their docs in the node-spotify-API section of npm. I ended up using their .request method because .search was returning the wrong songs.
+
+Trying to figure out a way to add a video of the app work-flow. I decided to create an index.html to hold the video and then display that on github pages. The link to the videop will then be in the readme.
 
 ## Problems Still Facing:
 
